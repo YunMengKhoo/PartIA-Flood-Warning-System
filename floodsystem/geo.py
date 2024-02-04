@@ -16,7 +16,7 @@ def stations_by_distance(stations, p):
     return sorted_by_key(station_distance_list, 1)
 
 
-#done by Joe
+# done by Joe
 def stations_within_radius(stations, centre, r):
     """given a list of station objects, a coordinate for the centre, and radius, return stations within radius of the centre"""
     result = []
@@ -40,7 +40,7 @@ def stations_by_river(stations):
     result = {}
     for station in stations:
         if station.river not in result:
-            result[station.river] = station
+            result[station.river] = [station]
         else:
             result[station.river].append(station)
     
