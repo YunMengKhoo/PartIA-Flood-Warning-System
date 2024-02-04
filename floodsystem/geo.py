@@ -54,13 +54,13 @@ def rivers_by_station_number(stations, N):
     """From this list, it should be sorted by number of stations from largest to smallest. In the case of ties, all involved rivers are included"""
     riverdict = stations_by_river(stations)
     river_number_list = []
-    for station in stations:
+    for river in riverdict:
         
-        numberx = len(riverdict[station.river])
-        river_number_list.append((station.river,numberx))
+        numberx = len(riverdict[river])
+        river_number_list.append((river,numberx))
 
-    river_number_list = sorted_by_key(river_number_list, 1).reverse()
-    
+    river_number_list = sorted_by_key(river_number_list, 1)
+    river_number_list.reverse()
     while river_number_list[N][1] == river_number_list[N-1][1] and N <= len(river_number_list):
         N += 1
-    return sorted_by_key(river_number_list[:N])
+    return river_number_list[:N]
