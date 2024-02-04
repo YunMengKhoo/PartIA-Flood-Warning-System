@@ -18,9 +18,30 @@ def stations_by_distance(stations, p):
 
 #done by Joe
 def stations_within_radius(stations, centre, r):
+    """given a list of station objects, a coordinate for the centre, and radius, return stations within radius of the centre"""
     result = []
     for station in stations:
         if haversine(station.coord,centre) <= r:
             result.append(station)
+    
+    return result
+
+# done by Joe
+def rivers_with_station(stations):
+    """given a list of station objects, return a set of all rivers that have stations"""
+    rivers = set()
+    for station in stations:
+        rivers.add(station.river)
+    
+    return rivers
+
+def stations_by_river(stations):
+    """given a list of all station objects, return a dictionary with river names as the key and corresponding station objects as values"""
+    result = {}
+    for station in stations:
+        if station.river not in result:
+            result[station.river] = station
+        else:
+            result[station.river].append(station)
     
     return result
