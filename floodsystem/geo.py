@@ -6,8 +6,9 @@ geographical data.
 
 """
 
-from .utils import sorted_by_key  # noqa
+from utils import sorted_by_key  # noqa
 from haversine import haversine
+from station import MonitoringStation
 def stations_by_distance(stations, p):
     station_distance_list = []
     for station in stations:
@@ -25,6 +26,20 @@ def stations_within_radius(stations, centre, r):
             result.append(station)
     
     return result
+
+
+# testing
+def testing_stations_within_radius():
+    station1 = MonitoringStation(1,101,'station 1', (5,5),(0,10),'river 1', 'town 1')
+    station2 = MonitoringStation(2,102,'station 2', (90,90),(0,10),'river 2', 'town 2')
+    centre = (5,5)
+    r = 5
+    stations = [station1, station2]
+
+    assert stations_within_radius(stations, centre, r) == [station1], "Testing failed for stations_within_radius"
+    
+    
+
 
 # done by Joe
 def rivers_with_station(stations):
