@@ -1,4 +1,4 @@
-from floodsystem.flood import stations_level_over_threshold
+from floodsystem.flood import stations_highest_rel_level
 from floodsystem.stationdata import build_station_list, update_water_levels
 
 def run():
@@ -7,12 +7,11 @@ def run():
     # Build list of stations
     stations = build_station_list()
     update_water_levels(stations)
-
-    tol = 0.8
-    stations_over_thresh = stations_level_over_threshold(stations,tol)
-
-    for i in stations_over_thresh:
-        print(i[0].name,i[1])
+    
+    N = 10
+    stations_at_risk = stations_highest_rel_level(stations,N)
+    for station in stations_at_risk:
+        print(station.name, station.relative_water_level())
 
 
 if __name__ == "__main__":
