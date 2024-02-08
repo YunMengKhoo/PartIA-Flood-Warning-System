@@ -12,6 +12,7 @@ def run():
     distance_oriented_station_list = stations_by_distance(stations,p)
     station_name_town_distance=[(x[0].name, x[0].town, x[1]) for x in distance_oriented_station_list]
     print("The 10 closest stations and their corresponding distances are", station_name_town_distance[:10])
+    print('='*20)
     print("The 10 furthest stations and their corresponding distances are", station_name_town_distance[-10:])
 
 
