@@ -66,8 +66,6 @@ class MonitoringStation:
 
         if current is None:
             return None
-        if current < low or current > high:
-            return None
         
         return (current - low) / (high - low)
 
