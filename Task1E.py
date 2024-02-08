@@ -6,7 +6,7 @@ def run():
     """Requirements for Task 1A"""
 
     stations = build_station_list()
-    N = 9
+    N = 10
     most_monitored_rivers = rivers_by_station_number(stations, N)
     print("The most monitored rivers and their respective number of monitoring stations are", most_monitored_rivers)
 

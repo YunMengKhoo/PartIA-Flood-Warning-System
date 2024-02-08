@@ -6,9 +6,9 @@ geographical data.
 
 """
 
-from .utils import sorted_by_key  # noqa
+from utils import sorted_by_key  # noqa
 from haversine import haversine
-from .station import MonitoringStation
+from station import MonitoringStation
 def stations_by_distance(stations, p):
     station_distance_list = []
     for station in stations:
