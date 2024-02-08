@@ -16,4 +16,4 @@ def test_stations_level_over_threshold():
     tol = 0.5
 
     print(stations_level_over_threshold(stations, tol))
-    assert stations_level_over_threshold(stations, tol) == [(station1,1), (station2,0.8), (station5, 10.0)], "Testing failed for stations_level_over_threshold"
+    assert stations_level_over_threshold(stations, tol) == [(station5,10.0), (station1,1), (station2,0.8)], "Testing failed for stations_level_over_threshold"
