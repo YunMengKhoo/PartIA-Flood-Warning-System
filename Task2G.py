@@ -1,4 +1,5 @@
 import datetime
+from floodsystem.utils import sorted_by_key
 from floodsystem.flood import stations_highest_rel_level
 from floodsystem.stationdata import build_station_list, update_water_levels
 from floodsystem.datafetcher import fetch_measure_levels
@@ -17,31 +18,49 @@ def run():
     stations = build_station_list()
     update_water_levels(stations)
 
+    rivers_mentioned_previously=[]
+
+    tol = 1.2
+    stations_over_thresh = stations_level_over_threshold(stations,tol)
+# can use not in
+    for i in stations_over_thresh:
+        if i in rivers_mentioned_previously:
+            pass
+        else:
+            print("Severe risk", i[0].name,i[1])
+            rivers_mentioned_previously.append(i)
+
+    tol = 1.1
+    stations_over_thresh = stations_level_over_threshold(stations,tol)
+   
+    for i in stations_over_thresh:
+        if i in rivers_mentioned_previously:
+            pass
+        else:
+            print("High risk", i[0].name,i[1])
+            rivers_mentioned_previously.append(i)
+    
+    tol = 1.0
+    stations_over_thresh = stations_level_over_threshold(stations,tol)
+    
+    for i in stations_over_thresh:
+        if i in rivers_mentioned_previously:
+            pass
+        else:
+            print("Moderate risk", i[0].name,i[1])
+            rivers_mentioned_previously.append(i)
+
     tol = 0.8 
     stations_over_thresh = stations_level_over_threshold(stations,tol)
 
     for i in stations_over_thresh:
-        print("Low risk", i[0].name,i[1])
-
-    tol = 1.0
-    stations_over_thresh = stations_level_over_threshold(stations,tol)
-
-    for i in stations_over_thresh:
-        print("Moderate risk", i[0].name,i[1])
-
-    tol = 1.1
-    stations_over_thresh = stations_level_over_threshold(stations,tol)
-
-    for i in stations_over_thresh:
-        print("High risk", i[0].name,i[1])
-
-    tol = 1.2
-    stations_over_thresh = stations_level_over_threshold(stations,tol)
-
-    for i in stations_over_thresh:
-        print("Severe risk", i[0].name,i[1])
+        if i in rivers_mentioned_previously:
+            pass
+        else:
+            print("Low risk", i[0].name,i[1])
+            rivers_mentioned_previously.append(i)
 
 if __name__ == "__main__":
-    print("*** Task 2F: CUED Part IA Flood Warning System ***")
+    print("*** Task 2G: CUED Part IA Flood Warning System ***")
     run()
     
