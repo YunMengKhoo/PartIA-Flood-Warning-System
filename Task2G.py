@@ -17,48 +17,76 @@ def run():
     # Build list of stations
     stations = build_station_list()
     update_water_levels(stations)
+    listed_stations = []
 
-    rivers_mentioned_previously=[]
-
-    tol = 1.2
-    stations_over_thresh = stations_level_over_threshold(stations,tol)
-# can use not in
+    sev_risk_tol = 1.2
+    stations_over_thresh = stations_level_over_threshold(stations,sev_risk_tol)
     for i in stations_over_thresh:
-        if i in rivers_mentioned_previously:
-            pass
-        else:
-            print("Severe risk", i[0].name,i[1])
-            rivers_mentioned_previously.append(i)
+        print("Severe risk", i[0].name,i[1])
 
-    tol = 1.1
-    stations_over_thresh = stations_level_over_threshold(stations,tol)
-   
+    listed_stations += stations_over_thresh
+
+    high_risk_tol = 1.1
+    stations_over_thresh = stations_level_over_threshold(stations,high_risk_tol)
+
     for i in stations_over_thresh:
-        if i in rivers_mentioned_previously:
-            pass
-        else:
+        if i not in listed_stations:
             print("High risk", i[0].name,i[1])
-            rivers_mentioned_previously.append(i)
+            listed_stations.append(i)
     
-    tol = 1.0
-    stations_over_thresh = stations_level_over_threshold(stations,tol)
-    
+    mod_risk_tol = 1.0
+    stations_over_thresh = stations_level_over_threshold(stations,mod_risk_tol)
+
     for i in stations_over_thresh:
-        if i in rivers_mentioned_previously:
-            pass
-        else:
+        if i not in listed_stations:
             print("Moderate risk", i[0].name,i[1])
-            rivers_mentioned_previously.append(i)
-
-    tol = 0.8 
-    stations_over_thresh = stations_level_over_threshold(stations,tol)
+            listed_stations.append(i)
+    
+    low_risk_tol = 0.8 
+    stations_over_thresh = stations_level_over_threshold(stations,low_risk_tol)
 
     for i in stations_over_thresh:
-        if i in rivers_mentioned_previously:
-            pass
-        else:
+        if i not in listed_stations:
             print("Low risk", i[0].name,i[1])
-            rivers_mentioned_previously.append(i)
+
+
+    
+
+    
+
+    
+
+    listed_stations += stations_over_thresh
+
+    high_risk_tol = 1.1
+    stations_over_thresh = stations_level_over_threshold(stations,high_risk_tol)
+
+    for i in stations_over_thresh:
+        if i not in listed_stations:
+            print("High risk", i[0].name,i[1])
+            listed_stations.append(i)
+    
+    mod_risk_tol = 1.0
+    stations_over_thresh = stations_level_over_threshold(stations,mod_risk_tol)
+
+    for i in stations_over_thresh:
+        if i not in listed_stations:
+            print("Moderate risk", i[0].name,i[1])
+            listed_stations.append(i)
+    
+    low_risk_tol = 0.8 
+    stations_over_thresh = stations_level_over_threshold(stations,low_risk_tol)
+
+    for i in stations_over_thresh:
+        if i not in listed_stations:
+            print("Low risk", i[0].name,i[1])
+
+
+    
+
+    
+
+    
 
 if __name__ == "__main__":
     print("*** Task 2G: CUED Part IA Flood Warning System ***")
